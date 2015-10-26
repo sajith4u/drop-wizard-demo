@@ -2,30 +2,41 @@ package dev.innova.wizard.service;
 
 import com.codahale.metrics.annotation.Timed;
 import dev.innova.wizard.beans.Student;
-import dev.innova.wizard.db.StudentsDB;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/student")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class StudentManagementService {
+
+    StudentDatabaseService studentDatabaseService;
+
+    public StudentManagementService(StudentDatabaseService studentDatabaseService) {
+        this.studentDatabaseService = studentDatabaseService;
+    }
 
     @GET
     @Timed
-    @Path("/get/{id}")
+    @Path("/get/")
     @Produces(MediaType.APPLICATION_JSON)
-    public Student getPerson(@PathParam("id") int id) {
-        return StudentsDB.getById(id);
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response getPerson(@PathParam("id") int id) {
+        Student student = studentDatabaseService.findNameById(id);
+        return Response.ok(student).build();
     }
 
     @DELETE
     @Timed
-    @Path("/remove/{id}")
+    @Path("/remove/{first_name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String removePerson(@PathParam("first_name") String first_name) {
-        StudentsDB.remove();
-        return "Last person remove. Total count: " + StudentsDB.getCount();
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response removePerson(@PathParam("first_name") String first_name) {
+        String response = studentDatabaseService.deleteByFirstName(first_name);
+        return Response.ok(response).build();
     }
 
     @GET
@@ -33,7 +44,7 @@ public class StudentManagementService {
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Student> getPersons() {
-        return StudentsDB.getAll();
+        return studentDatabaseService.getPersons();
     }
 
     @POST
@@ -42,6 +53,7 @@ public class StudentManagementService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes({MediaType.APPLICATION_JSON})
     public String addPerson(Student student) {
-        return StudentsDB.save(student);
+        studentDatabaseService.save(student);
+        return "Students Count : " + studentDatabaseService.getCounts();
     }
 }

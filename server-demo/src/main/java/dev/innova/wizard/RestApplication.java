@@ -17,15 +17,18 @@ public class RestApplication extends Application<RestStubConfig> {
 
     @Override
     public void run(RestStubConfig config, Environment env) {
-        final StudentManagementService studentManagementService = new StudentManagementService();
-        env.jersey().register(studentManagementService);
-
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(env, config.getDataSourceFactory(), "mysql");
         final StudentsDAO dao = jdbi.onDemand(StudentsDAO.class);
-        env.jersey().register(new StudentDatabaseService(dao));
+        final StudentDatabaseService studentDatabaseService = new StudentDatabaseService(dao);
+        env.jersey().register(studentDatabaseService);
 
-        final StudentRestHealth healthCheck = new StudentRestHealth(config.getVersion());
+        final StudentManagementService studentManagementService = new StudentManagementService(studentDatabaseService);
+
+        env.jersey().register(studentManagementService);
+
+
+        final StudentRestHealth healthCheck = new StudentRestHealth(config.getVersion(),studentDatabaseService);
         env.healthChecks().register("template", healthCheck);
         env.jersey().register(healthCheck);
     }

@@ -11,10 +11,10 @@ public interface StudentsDAO {
     @SqlUpdate("insert into students (first_name,last_name,email) values (:first_name, :last_name,:email)")
     void insert(@Bind("first_name") String firstName, @Bind("last_name") String lastName, @Bind("email") String email);
 
-    @SqlQuery("select name from students where id = :id")
+    @SqlQuery("select * from students where id = :id")
     Student findNameById(@Bind("id") int id);
 
-    @SqlQuery("select name from students")
+    @SqlQuery("select * from students")
     List<Student> getAllStudents();
 
     @SqlUpdate("delete from students where first_name = :first_name")

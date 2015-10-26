@@ -15,6 +15,7 @@ public class RestStubConfig extends Configuration {
 
     @Valid
     @NotNull
+    @JsonProperty
     private DataSourceFactory database = new DataSourceFactory();
 
     @JsonProperty

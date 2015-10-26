@@ -30,4 +30,8 @@ public class StudentDatabaseService {
         studentsDAO.deleteByName(firstName);
         return String.valueOf(studentsDAO.getAllStudentsCount());
     }
+
+    public String getCounts() {
+        return String.valueOf(studentsDAO.getAllStudentsCount());
+    }
 }
