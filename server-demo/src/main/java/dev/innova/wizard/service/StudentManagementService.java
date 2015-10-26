@@ -10,6 +10,7 @@ import java.util.List;
 
 @Path("/student")
 public class StudentManagementService {
+
     @GET
     @Timed
     @Path("/get/{id}")
@@ -18,11 +19,11 @@ public class StudentManagementService {
         return StudentsDB.getById(id);
     }
 
-    @GET
+    @DELETE
     @Timed
-    @Path("/remove")
+    @Path("/remove/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String removePerson() {
+    public String removePerson(@PathParam("first_name") String first_name) {
         StudentsDB.remove();
         return "Last person remove. Total count: " + StudentsDB.getCount();
     }
