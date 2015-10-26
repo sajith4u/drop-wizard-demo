@@ -3,7 +3,7 @@ package dev.innova.wizard;
 import dev.innova.wizard.db.StudentsDAO;
 import dev.innova.wizard.health.StudentRestHealth;
 import dev.innova.wizard.service.StudentDatabaseService;
-import dev.innova.wizard.service.StudentManagementService;
+import dev.innova.wizard.api.StudentManagementService;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Environment;

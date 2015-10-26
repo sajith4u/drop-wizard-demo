@@ -1,7 +1,8 @@
-package dev.innova.wizard.service;
+package dev.innova.wizard.api;
 
 import com.codahale.metrics.annotation.Timed;
 import dev.innova.wizard.beans.Student;
+import dev.innova.wizard.service.StudentDatabaseService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
