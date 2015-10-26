@@ -1,30 +1,28 @@
 package dev.innova.wizard.db;
-import dev.innova.wizard.beans.Person;
+
+import dev.innova.wizard.beans.Student;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by sajithv on 10/25/15.
- */
 public class StudentsDB {
-    private static Map<Integer, Person> persons = new HashMap<Integer, Person>();
+    private static Map<Integer, Student> persons = new HashMap<Integer, Student>();
 
     static {
-        persons.put(1, new Person(1, "FN1", "LN1", "email1@email.com"));
-        persons.put(2, new Person(2, "FN2", "LN2", "email2@email.com"));
-        persons.put(3, new Person(3, "FN3", "LN3", "email3@email.com"));
-        persons.put(4, new Person(4, "FN4", "LN4", "email4@email.com"));
+        persons.put(1, new Student(1, "Sajith", "Vijesekara", "sajith.vijesekara@gmail.com"));
+        persons.put(2, new Student(2, "Hsenid", "hsenid", "hsenidmobile@gmail.com"));
+        persons.put(3, new Student(3, "user1", "lsatName", "lsatName@gmail.com"));
+        persons.put(4, new Student(4, "user2", "lsatName", "lsatName@gmail.com"));
     }
 
-    public static Person getById(int id) {
+    public static Student getById(int id) {
         return persons.get(id);
     }
 
-    public static List<Person> getAll() {
-        List<Person> result = new ArrayList<Person>();
+    public static List<Student> getAll() {
+        List<Student> result = new ArrayList<Student>();
         for (Integer key : persons.keySet()) {
             result.add(persons.get(key));
         }
@@ -41,14 +39,14 @@ public class StudentsDB {
         }
     }
 
-    public static String save(Person person) {
+    public static String save(Student student) {
         String result = "";
-        if (persons.get(person.getId()) != null) {
-            result = "Updated Person with id=" + person.getId();
+        if (persons.get(student.getId()) != null) {
+            result = "Updated Student with id=" + student.getId();
         } else {
-            result = "Added Person with id=" + person.getId();
+            result = "Added Student with id=" + student.getId();
         }
-        persons.put(person.getId(), person);
+        persons.put(student.getId(), student);
         return result;
     }
 }

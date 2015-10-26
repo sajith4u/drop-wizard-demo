@@ -2,16 +2,16 @@ package dev.innova.wizard.beans;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Person {
+public class Student {
     private int id;
     private String firstName;
     private String lastName;
     private String email;
 
-    public Person() {
+    public Student() {
     }
 
-    public Person(int id, String firstName, String lastName, String email) {
+    public Student(int id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

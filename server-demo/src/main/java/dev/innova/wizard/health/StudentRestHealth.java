@@ -4,11 +4,11 @@ import com.codahale.metrics.health.HealthCheck;
 import dev.innova.wizard.db.StudentsDB;
 
 
-public class RestStubCheck extends HealthCheck {
+public class StudentRestHealth extends HealthCheck {
 
     private final String version;
 
-    public RestStubCheck(String version) {
+    public StudentRestHealth(String version) {
         this.version = version;
     }
 
