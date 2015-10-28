@@ -1,9 +1,9 @@
 package dev.innova.wizard;
 
+import dev.innova.wizard.api.StudentManagementService;
 import dev.innova.wizard.db.StudentsDAO;
 import dev.innova.wizard.health.StudentRestHealth;
 import dev.innova.wizard.service.StudentDatabaseService;
-import dev.innova.wizard.api.StudentManagementService;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Environment;
@@ -28,7 +28,7 @@ public class RestApplication extends Application<RestStubConfig> {
         env.jersey().register(studentManagementService);
 
 
-        final StudentRestHealth healthCheck = new StudentRestHealth(config.getVersion(),studentDatabaseService);
+        final StudentRestHealth healthCheck = new StudentRestHealth(config.getVersion(), studentDatabaseService);
         env.healthChecks().register("template", healthCheck);
         env.jersey().register(healthCheck);
     }
