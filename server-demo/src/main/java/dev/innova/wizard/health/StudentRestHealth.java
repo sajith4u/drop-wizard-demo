@@ -15,7 +15,6 @@ public class StudentRestHealth extends HealthCheck {
         this.studentDatabaseService = studentDatabaseService;
     }
 
-
     @Override
     protected Result check() throws Exception {
         if (studentDatabaseService.getCounts() == "") {

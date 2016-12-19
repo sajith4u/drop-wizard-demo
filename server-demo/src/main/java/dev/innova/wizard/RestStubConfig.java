@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 public class RestStubConfig extends Configuration {
+
     @NotEmpty
     private String version;
 

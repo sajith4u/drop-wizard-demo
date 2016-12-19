@@ -8,6 +8,7 @@ import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import java.util.List;
 
 public interface StudentsDAO {
+
     @SqlUpdate("insert into students (first_name,last_name,email) values (:first_name, :last_name,:email)")
     void insert(@Bind("first_name") String firstName, @Bind("last_name") String lastName, @Bind("email") String email);
 

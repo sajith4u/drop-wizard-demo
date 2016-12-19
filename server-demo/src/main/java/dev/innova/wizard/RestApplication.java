@@ -11,6 +11,7 @@ import org.skife.jdbi.v2.DBI;
 
 
 public class RestApplication extends Application<RestStubConfig> {
+
     public static void main(String[] args) throws Exception {
         new RestApplication().run(args);
     }
